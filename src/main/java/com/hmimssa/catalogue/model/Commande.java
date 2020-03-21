@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
@@ -26,6 +27,7 @@ public class Commande {
 	
 	@ManyToOne
 	@Cascade(value = { CascadeType.SAVE_UPDATE })
+	@JoinColumn(name="codeClient")
 	private Client client;
 	@OneToMany(mappedBy = "commande")
 	@Cascade(value = { CascadeType.ALL })

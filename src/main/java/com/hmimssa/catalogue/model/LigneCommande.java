@@ -1,9 +1,8 @@
 package com.hmimssa.catalogue.model;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.Cascade;
@@ -13,15 +12,16 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class LigneCommande {
-	@Id
- 	@GeneratedValue(strategy=GenerationType.IDENTITY) 	
-	private int num;
+	@EmbeddedId
+    protected LigneCommandePK ligneCommandePK;
 
 	@ManyToOne
+	@JoinColumn(name = "numCommande",insertable = false, updatable = false)
 	@Cascade(value = { CascadeType.ALL })
 	private Commande commande;
 
 	@ManyToOne
+	@JoinColumn(name = "codeArticle",insertable = false, updatable = false)
 	@Cascade(value = { CascadeType.ALL })
 	private Article article;
 

@@ -9,26 +9,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hmimssa.catalogue.dao.DaoClient;
 import com.hmimssa.catalogue.model.Client;
-
-//@RestController
-//@RequestMapping("/API/Inscription")
+@RestController
+@RequestMapping("/API/Inscription")
 public class InscriptionController {
 
-//	@Autowired
-//	DaoClient daoClient;
-//
-//	@PostMapping(path = "/add") // Map ONLY POST Requests
-//	public @ResponseBody String addNewUser(@RequestBody Client client) {
-//		
-//		// @ResponseBody means the returned String is the response, not a view name
-//		// @RequestParam means it is a parameter from the GET or POST request
-//
-//		if (client != null) {
-//			daoClient.save(client);
-//			return "Saved";
-//		}
-//
-//		return "Errur";
-//	}
+	@Autowired
+	DaoClient daoClient;
+
+	@PostMapping(path="/add") // Map ONLY POST Requests
+	public @ResponseBody String addNewUser(@RequestBody Client client) {
+		
+		// @ResponseBody means the returned String is the response, not a view name
+		// @RequestParam means it is a parameter from the GET or POST request
+
+		if (client != null) {
+			daoClient.save(client);
+			return "Saved";
+		}
+
+		return "Errur";
+	}
 
 }
