@@ -3,26 +3,23 @@ package com.hmimssa.catalogue.model;
 import java.util.Collection;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
+ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+ 
 
 @Entity
-@Table(name="categories")
 public class Categorie {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int refCat;
+ 	@GeneratedValue(strategy=GenerationType.IDENTITY) 	
+ 	private int refCat;
 	private String cat;
-	@OneToMany(mappedBy = "codeArticle",fetch = FetchType.LAZY)
-	@NotFound(action = NotFoundAction.IGNORE)
+
+	@OneToMany(mappedBy = "categorie")
 	private Collection<Article> articles;
+	
+	
 	public Categorie() {
 		super();
 	}

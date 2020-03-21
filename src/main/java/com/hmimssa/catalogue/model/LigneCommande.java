@@ -1,17 +1,37 @@
 package com.hmimssa.catalogue.model;
 
-//is a ligne commande non valide en mode panier
-public class LigneCommande {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-	private Article article;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+//is a ligne commande non valide en mode panier
+
+@Entity
+public class LigneCommande {
+	@Id
+ 	@GeneratedValue(strategy=GenerationType.IDENTITY) 	
+	private int num;
+
+	@ManyToOne
+	@Cascade(value = { CascadeType.ALL })
 	private Commande commande;
+
+	@ManyToOne
+	@Cascade(value = { CascadeType.ALL })
+	private Article article;
+
 	private int qteCde;
 
 	public LigneCommande() {
 		super();
 	}
 
-	public LigneCommande( Commande commande,Article article, int qteCde) {
+	public LigneCommande(Commande commande, Article article, int qteCde) {
 		super();
 		this.commande = commande;
 		this.article = article;
