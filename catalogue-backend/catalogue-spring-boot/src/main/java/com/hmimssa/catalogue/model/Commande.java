@@ -35,8 +35,6 @@ public class Commande {
 	@MapKey(name = "article")
 	private SortedMap<Article, LigneCommande> detailsCommandes = new TreeMap<>();
 
-
-
 	public Commande() {
 		super();
 	}
