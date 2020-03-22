@@ -48,9 +48,7 @@ export default function SignUp() {
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
+                            <TextField autoComplete="fname" name="firstName"
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -60,10 +58,7 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
+                            <TextField variant="outlined" required fullWidth
                                 id="lastName"
                                 label="Nom"
                                 name="lastName"
@@ -71,10 +66,7 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
+                            <TextField variant="outlined" required fullWidth
                                 id="email"
                                 label="Email"
                                 name="email"
@@ -82,10 +74,7 @@ export default function SignUp() {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                variant="outlined"
-                                required
-                                fullWidth
+                            <TextField variant="outlined" required fullWidth
                                 name="password"
                                 label="Mot de passe"
                                 type="password"
@@ -95,11 +84,7 @@ export default function SignUp() {
                         </Grid>
 
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
+                    <Button type="submit" fullWidth variant="contained" color="primary"
                         className={classes.submit}
                     >
                         Inscription

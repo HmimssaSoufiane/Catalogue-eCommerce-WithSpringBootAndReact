@@ -124,9 +124,8 @@ class Catalogue extends React.Component {
                                 onChange={this.handleChange}
                                 input={<BootstrapInput />}
                             ><option aria-label="None" value="" />
-                                {
-                                    this.state.categories.map(row => (<option value={row.refCat}>{row.cat}</option>
-                                    ))}
+                                {this.state.categories.map(row => (<option value={row.refCat}>{row.cat}</option>
+                                ))}
 
                             </NativeSelect>
                         </FormControl>
