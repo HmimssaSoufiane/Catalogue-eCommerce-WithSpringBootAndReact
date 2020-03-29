@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,17 +19,18 @@ import com.hmimssa.catalogue.model.Article;
 @RestController
 @RequestMapping("/API/Article")
 public class ArticleController {
-	
+
 	@Autowired
 	DaoArticle daoArticle;
-	@GetMapping(path="/Articles")
+
+	@GetMapping(path = "/Articles")
 	public @ResponseBody Iterable<Article> getArticles() {
 		return daoArticle.findAll();
 	}
-	
-	@PostMapping(path="/AddArticle") // Map ONLY POST Requests
+
+	@PostMapping(path = "/AddArticle") // Map ONLY POST Requests
 	public @ResponseBody String addNewUser(@RequestBody Article article) {
-		
+
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 
@@ -38,9 +40,20 @@ public class ArticleController {
 		}
 		return "Errur";
 	}
-	 @GetMapping(path="/AddArticle/{id}")
-	 public @ResponseBody Optional<Article> getArticle(@PathVariable int id) {
+
+	@GetMapping(path = "/AddArticle/{id}")
+	public @ResponseBody Optional<Article> getArticle(@PathVariable int id) {
 		return daoArticle.findById(id);
 	}
-	 
+
+	@GetMapping("/Article/{id}")
+	public Article findArticleById(@PathVariable int id) {
+		return daoArticle.findById(id).orElse(null);
+	}
+
+	@DeleteMapping("/DeleteArticle/{id}")
+	public String deleteArticle(@PathVariable int id) {
+		 daoArticle.deleteById(id);
+		 return "Done";
+	}
 }

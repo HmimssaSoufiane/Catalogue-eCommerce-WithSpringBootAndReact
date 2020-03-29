@@ -6,5 +6,7 @@ import com.hmimssa.catalogue.model.Client;
 
 public interface DaoClient extends CrudRepository<Client, Integer> {
 
+	public Client findByEmail(String email);
+
 
 }
