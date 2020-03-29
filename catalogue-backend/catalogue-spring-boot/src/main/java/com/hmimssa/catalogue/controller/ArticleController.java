@@ -23,12 +23,12 @@ public class ArticleController {
 	@Autowired
 	DaoArticle daoArticle;
 
-	@GetMapping(path = "/Articles")
+	@GetMapping(path = "/articles")
 	public @ResponseBody Iterable<Article> getArticles() {
 		return daoArticle.findAll();
 	}
 
-	@PostMapping(path = "/AddArticle") // Map ONLY POST Requests
+	@PostMapping(path = "/addArticle") // Map ONLY POST Requests
 	public @ResponseBody String addNewUser(@RequestBody Article article) {
 
 		// @ResponseBody means the returned String is the response, not a view name
@@ -41,17 +41,17 @@ public class ArticleController {
 		return "Errur";
 	}
 
-	@GetMapping(path = "/AddArticle/{id}")
+	@GetMapping(path = "/addArticle/{id}")
 	public @ResponseBody Optional<Article> getArticle(@PathVariable int id) {
 		return daoArticle.findById(id);
 	}
 
-	@GetMapping("/Article/{id}")
+	@GetMapping("/article/{id}")
 	public Article findArticleById(@PathVariable int id) {
 		return daoArticle.findById(id).orElse(null);
 	}
 
-	@DeleteMapping("/DeleteArticle/{id}")
+	@DeleteMapping("/deleteArticle/{id}")
 	public String deleteArticle(@PathVariable int id) {
 		 daoArticle.deleteById(id);
 		 return "Done";

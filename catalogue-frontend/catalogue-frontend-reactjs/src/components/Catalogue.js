@@ -88,12 +88,12 @@ class Catalogue extends React.Component {
             redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/API/Article/Articles", requestOptions)
+        fetch("http://localhost:8080/API/Article/articles", requestOptions)
             .then(response => response.text())
             .then(result => this.setState({ articles: JSON.parse(result) }))
             .catch(error => console.log('error', error));
 
-        fetch("http://localhost:8080/API/Categorie/Categories", requestOptions)
+        fetch("http://localhost:8080/API/Categorie/categories", requestOptions)
             .then(response => response.text())
             //.then(result => console.log(result))
             .then(result => this.setState({ categories: JSON.parse(result) }))

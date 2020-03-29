@@ -18,7 +18,7 @@ public class CategorieController {
 	@Autowired
 	DaoCategorie daoCategorie;
 
-	@GetMapping("/Categories")
+	@GetMapping("/categories")
 	public @ResponseBody Iterable<Categorie> getCategories() {
 		return daoCategorie.findAll();
 	}

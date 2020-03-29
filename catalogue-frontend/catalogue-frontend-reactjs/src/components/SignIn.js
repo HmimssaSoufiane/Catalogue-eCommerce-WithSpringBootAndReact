@@ -29,6 +29,23 @@ const styles = theme => ({
 });
 
 class SignIn extends React.Component {
+    state = {
+        email: "",
+        password: ""
+    };
+    onSubmit(e) {
+        e.preventDefault();
+
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/API/Client/clientByEmail/" + this.state.email, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
     render() {
         const classes = this.props;
         return (
