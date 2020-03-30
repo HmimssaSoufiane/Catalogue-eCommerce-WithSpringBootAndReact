@@ -44,7 +44,8 @@ export default function Welcome() {
             <main>
                 {/* Hero unit */}
                 <div className={classes.heroContent}>
-                    <Container maxWidth="sm">
+                    <Container maxWidth="sm" >
+
                         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                             Bienvenue-vous chez SEBO.
                          </Typography>

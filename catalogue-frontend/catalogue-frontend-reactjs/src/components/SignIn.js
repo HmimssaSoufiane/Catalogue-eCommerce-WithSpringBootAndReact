@@ -9,13 +9,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Redirect } from 'react-router-dom'
+
 
 const styles = theme => ({
+
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+
     },
     avatar: {
         margin: theme.spacing(1),
@@ -32,10 +36,19 @@ class SignIn extends React.Component {
     state = {
         client: {},
         email: "",
-        motPasse: ""
-
+        motPasse: "",
+        redirect: false
     };
-
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/Catalogue' />
+        }
+    }
     onSubmit = (e) => {
         e.preventDefault();
 
@@ -53,57 +66,65 @@ class SignIn extends React.Component {
 
         fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
-            .then(result => this.setState({ client: JSON.parse(result) }))
+            .then(result => {
+                //this.setState({ client: JSON.parse(result) })
+                if (result !== "") this.Redirect();
+            })
+
             .catch(error => console.log('error', error));
+
     }
     render() {
         const classes = this.props;
         return (
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Connexion
-                </Typography>
-                    <form className={classes.form} onSubmit={this.onSubmit} noValidate>
-                        <TextField variant="outlined" margin="normal" required fullWidth
-                            id="email"
-                            label="Adresse e-mail"
-                            name="email"
-                            onChange={e => {
-                                this.setState({ email: e.target.value });
-                            }}
-                            autoFocus
-                        />
-                        <TextField variant="outlined" margin="normal" required fullWidth
-                            name="password"
-                            label="Mot de passe"
-                            type="password"
-                            id="password"
-                            onChange={e => {
-                                this.setState({ motPasse: e.target.value });
+            <div>
+                {this.renderRedirect()}
+                <Container component="main" maxWidth="sm">
+                    <CssBaseline />
+                    <div className={classes.paper}>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Connexion
+                    </Typography>
+                        <form className={classes.form} onSubmit={this.onSubmit} noValidate>
+                            <TextField variant="outlined" margin="normal" required fullWidth
+                                id="email"
+                                label="Adresse e-mail"
+                                name="email"
+                                onChange={e => {
+                                    this.setState({ email: e.target.value });
+                                }}
+                                autoFocus
+                            />
+                            <TextField variant="outlined" margin="normal" required fullWidth
+                                name="password"
+                                label="Mot de passe"
+                                type="password"
+                                id="password"
+                                onChange={e => {
+                                    this.setState({ motPasse: e.target.value });
 
-                            }}
-                            autoComplete="current-password"
-                        />
-                        <Button type="submit" fullWidthvariant="contained" color="primary" className={classes.submit} >
-                            Sign In
+                                }}
+                                autoComplete="current-password"
+                            />
+                            <Button type="submit" fullWidthvariant="contained" color="primary" className={classes.submit} >
+                                Sign In
                     </Button>
-                        <Grid container>
-                            <Grid item xs>
+                            <Grid container>
+                                <Grid item xs>
+                                </Grid>
+                                <Grid item>
+                                    <Link href="#" variant="body2">
+                                        {"Inscription"}
+                                    </Link>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Inscription"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                    </form>
-                </div>
-            </Container>
+                        </form>
+                    </div>
+                </Container>
+            </div>
         );
     }
 }
