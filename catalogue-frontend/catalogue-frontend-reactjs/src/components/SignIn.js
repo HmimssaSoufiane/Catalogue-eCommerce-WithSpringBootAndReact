@@ -30,10 +30,13 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
     state = {
-        email: "",
-        password: ""
+        Client: {
+            email: "",
+            motPasse: ""
+        }
     };
-    onSubmit(e) {
+
+    onSubmit = (e) => {
         e.preventDefault();
 
         var requestOptions = {
@@ -58,12 +61,15 @@ class SignIn extends React.Component {
                     <Typography component="h1" variant="h5">
                         Connexion
                 </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} onSubmit={this.onSubmit} noValidate>
                         <TextField variant="outlined" margin="normal" required fullWidth
                             id="email"
                             label="Adresse e-mail"
                             name="email"
-                            autoComplete="email"
+                            value={this.state.email}
+                            onChange={e => {
+                                this.setState({ email: e.target.value });
+                            }}
                             autoFocus
                         />
                         <TextField variant="outlined" margin="normal" required fullWidth
@@ -71,11 +77,13 @@ class SignIn extends React.Component {
                             label="Mot de passe"
                             type="password"
                             id="password"
+                            value={this.state.password}
+                            onChange={e => {
+                                this.setState({ password: e.target.value });
+                            }}
                             autoComplete="current-password"
                         />
-                        <Button type="submit" fullWidthvariant="contained" color="primary"
-                            className={classes.submit}
-                        >
+                        <Button type="submit" fullWidthvariant="contained" color="primary" className={classes.submit} >
                             Sign In
                     </Button>
                         <Grid container>

@@ -31,12 +31,16 @@ public class ClientController {
 		return daoClient.findById(id).orElse(null);
 	}
 	// SignIn
-	@GetMapping("/clientByEmail/{email}")
-	public @ResponseBody Client findClientByEmail(@PathVariable String email) {
-		return daoClient.findByEmail(email);
+	@GetMapping("/signIn")
+	public @ResponseBody Client findClientByEmail(@RequestBody Client client) {
+		Client _client = daoClient.findByEmail(client.getEmail());
+		if(_client.getMotPasse().equals(client.getMotPasse()))
+				return _client;
+		
+		return null;
 	}
-	
-	@PostMapping(path="/addClient") // SignUp
+	//SignUp
+	@PostMapping(path="/signUp") 
 	public @ResponseBody String addNewUser(@RequestBody Client client) {
 	
 		if (client != null) {
