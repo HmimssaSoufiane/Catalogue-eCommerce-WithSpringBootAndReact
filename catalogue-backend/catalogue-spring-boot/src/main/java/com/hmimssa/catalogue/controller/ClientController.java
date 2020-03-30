@@ -30,19 +30,23 @@ public class ClientController {
 	public Client findClientById(@PathVariable int id) {
 		return daoClient.findById(id).orElse(null);
 	}
+
 	// SignIn
-	@GetMapping("/signIn")
+	@PostMapping("/signIn")
 	public @ResponseBody Client findClientByEmail(@RequestBody Client client) {
-		Client _client = daoClient.findByEmail(client.getEmail());
-		if(_client.getMotPasse().equals(client.getMotPasse()))
+		if (client.getMotPasse() != null && client.getEmail() != null) {
+			Client _client = daoClient.findByEmail(client.getEmail());
+			if (_client.getMotPasse().equals(client.getMotPasse()))
 				return _client;
-		
+		}
+
 		return null;
 	}
-	//SignUp
-	@PostMapping(path="/signUp") 
+
+	// SignUp
+	@PostMapping(path = "/signUp")
 	public @ResponseBody String addNewUser(@RequestBody Client client) {
-	
+
 		if (client != null) {
 			daoClient.save(client);
 			return "Saved";

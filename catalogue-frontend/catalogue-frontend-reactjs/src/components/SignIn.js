@@ -30,23 +30,30 @@ const styles = theme => ({
 
 class SignIn extends React.Component {
     state = {
-        Client: {
-            email: "",
-            motPasse: ""
-        }
+        client: {},
+        email: "",
+        motPasse: ""
+
     };
 
     onSubmit = (e) => {
         e.preventDefault();
 
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({ "email": this.state.email, "motPasse": this.state.motPasse });
+
         var requestOptions = {
-            method: 'GET',
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
             redirect: 'follow'
         };
 
-        fetch("http://localhost:8080/API/Client/clientByEmail/" + this.state.email, requestOptions)
+        fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => this.setState({ client: JSON.parse(result) }))
             .catch(error => console.log('error', error));
     }
     render() {
@@ -66,7 +73,6 @@ class SignIn extends React.Component {
                             id="email"
                             label="Adresse e-mail"
                             name="email"
-                            value={this.state.email}
                             onChange={e => {
                                 this.setState({ email: e.target.value });
                             }}
@@ -77,9 +83,9 @@ class SignIn extends React.Component {
                             label="Mot de passe"
                             type="password"
                             id="password"
-                            value={this.state.password}
                             onChange={e => {
-                                this.setState({ password: e.target.value });
+                                this.setState({ motPasse: e.target.value });
+
                             }}
                             autoComplete="current-password"
                         />
