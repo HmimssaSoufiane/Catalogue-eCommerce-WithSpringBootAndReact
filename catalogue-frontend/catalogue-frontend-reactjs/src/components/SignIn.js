@@ -67,10 +67,10 @@ class SignIn extends React.Component {
         fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
             .then(result => {
-                //this.setState({ client: JSON.parse(result) })
-                if (result !== "") this.Redirect();
+                this.setState({ client: JSON.parse(result) });
+                console.log(this.state.client);
+                if (result !== "") this.setRedirect();
             })
-
             .catch(error => console.log('error', error));
 
     }
