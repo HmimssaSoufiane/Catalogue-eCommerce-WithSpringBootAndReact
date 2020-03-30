@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.hmimssa.catalogue.dao.DaoArticle;
+import com.hmimssa.catalogue.dao.DaoCategorie;
 import com.hmimssa.catalogue.model.Article;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -22,11 +23,14 @@ public class ArticleController {
 
 	@Autowired
 	DaoArticle daoArticle;
+	DaoCategorie daoCategorie;
 
 	@GetMapping(path = "/articles")
 	public @ResponseBody Iterable<Article> getArticles() {
 		return daoArticle.findAll();
 	}
+
+
 
 	@PostMapping(path = "/addArticle") // Map ONLY POST Requests
 	public @ResponseBody String addNewUser(@RequestBody Article article) {
@@ -53,7 +57,7 @@ public class ArticleController {
 
 	@DeleteMapping("/deleteArticle/{id}")
 	public String deleteArticle(@PathVariable int id) {
-		 daoArticle.deleteById(id);
-		 return "Done";
+		daoArticle.deleteById(id);
+		return "Done";
 	}
 }
