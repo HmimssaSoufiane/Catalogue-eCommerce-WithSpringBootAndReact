@@ -29,6 +29,7 @@ public class Commande {
 	@Cascade(value = { CascadeType.SAVE_UPDATE })
 	@JoinColumn(name="codeClient")
 	private Client client;
+	
 	@OneToMany(mappedBy = "commande")
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural

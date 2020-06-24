@@ -26,6 +26,7 @@ public class Article {
 	@JoinColumn(name="categorie")
 	private Categorie categorie;
 	private byte[] photo;
+	
 	@OneToMany(mappedBy = "article", orphanRemoval = true)
 	@Cascade(value = { CascadeType.ALL })
 	private Set<LigneCommande> detailsCommandes = new HashSet<>();

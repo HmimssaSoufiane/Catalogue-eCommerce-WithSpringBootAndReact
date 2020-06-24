@@ -28,6 +28,7 @@ public class Client {
 	private String ville;
 	private String tel;
 	private String motPasse;
+	
 	@OneToMany(mappedBy = "client")
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural
