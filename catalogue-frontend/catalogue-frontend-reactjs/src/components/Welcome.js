@@ -1,10 +1,15 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from "react-router-dom";
+import home_banner from '../assets/home_banner1.png'; // with import
+import home_banner2 from '../assets/home_banner2.png'; // with import
+import home_banner3 from '../assets/home_banner3.png'; // with import
+
+
 const useStyles = makeStyles(theme => ({
     icon: {
         marginRight: theme.spacing(2),
@@ -35,37 +40,91 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(6),
     },
+
+    button: {
+        padding: "15px 25px",
+        fontSize: "24px",
+        cursor: "pointer",
+        textAlign: "center",
+        outline: "none",
+        color: "#fff0",
+        backgroundColor: "#4CAF50",
+        border: "none",
+        borderRadius: "15px",
+        boxShadow: "0 9px #999"
+    },
 }));
+
 export default function Welcome() {
     const classes = useStyles();
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+        setIndex(selectedIndex);
+    };
     return (
-        <React.Fragment>
-            <CssBaseline />
-            <main>
-                {/* Hero unit */}
-                <div className={classes.heroContent}>
-                    <Container maxWidth="sm" >
+        <div >
 
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Bienvenue-vous chez SEBO.
-                         </Typography>
-                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                            Découvrez, achetez la musique de vos artistes préférés sur SEBO..
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={home_banner}
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={home_banner2}
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src={home_banner3}
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
+            <div style={{
+                background: "#0c2c39"
+
+            }} className={classes.heroContent}>
+                <Container maxWidth="m" >
+
+                    <Typography style={{ color: "#fff" }} component="h1" variant="h2" align="center" gutterBottom>
+                        Bienvenue Chez SEBO
+                    </Typography>
+                    <Typography style={{ color: "#fff" }} variant="h5" align="center" paragraph>
+                        Découvrez, achetez la musique de vos artistes préférés sur SEBO..
                         </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={2} justify="center">
-                                <Grid item>
-                                    <Link variant="contained" color="primary" to="/SignUp">Inscription</Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link to="/SignIn">Connexion</Link>
-                                </Grid>
+                    <div className={classes.heroButtons}>
+                        <Grid container spacing={2} justify="center">
+                            <Grid item>
+                                <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} variant="contained" color="primary" to="/SignUp">Inscription</Link>
                             </Grid>
-                        </div>
-                    </Container>
-                </div>
+                            <Grid item>
+                                <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} to="/SignIn">Connexion</Link>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Container>
+            </div>
 
-            </main>
-        </React.Fragment>
+        </div >
     );
 }

@@ -16,7 +16,7 @@ export default function NavBar() {
                         alt="React Bootstrap logo"
                     />
                 </Navbar.Brand>
-                <Navbar.Brand href="/">EsteConference</Navbar.Brand>
+                <Navbar.Brand href="/">SEBO</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="#features">Contact</Nav.Link>
