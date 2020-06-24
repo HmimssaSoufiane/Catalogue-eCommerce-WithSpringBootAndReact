@@ -104,7 +104,7 @@ export default function Welcome() {
                 background: "#0c2c39"
 
             }} className={classes.heroContent}>
-                <Container maxWidth="m" >
+                <Container maxWidth="md" >
 
                     <Typography style={{ color: "#fff" }} component="h1" variant="h2" align="center" gutterBottom>
                         Bienvenue Chez SEBO

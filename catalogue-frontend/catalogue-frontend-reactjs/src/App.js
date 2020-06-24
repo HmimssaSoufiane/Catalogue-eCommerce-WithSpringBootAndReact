@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/Catalogue" exact component={Catalogue} />
         <Route path="/SignIn" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
+        <Footer />
       </Router>
     </div>
   );
