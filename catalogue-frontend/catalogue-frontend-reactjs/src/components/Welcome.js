@@ -63,7 +63,7 @@ export default function Welcome() {
         setIndex(selectedIndex);
     };
     return (
-        <div >
+        <div style={{ height: "100vh", background: "#0c2c39" }} >
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
                 <Carousel.Item>

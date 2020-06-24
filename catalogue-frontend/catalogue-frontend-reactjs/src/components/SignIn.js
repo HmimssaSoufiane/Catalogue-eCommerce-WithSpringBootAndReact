@@ -77,7 +77,7 @@ export default function SignIn() {
     return (
         <div>
             {renderRedirect()}
-            <Container component="main" maxWidth="sm">
+            <Container style={{ height: "100vh" }} component="main" maxWidth="sm">
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
