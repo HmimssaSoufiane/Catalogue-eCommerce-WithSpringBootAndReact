@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Catalogue from './components/Catalogue';
 import SignIn from './components/SignIn';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import ArticleDetails from './components/ArticleDetails';
+
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         <Route path="/Catalogue" exact component={Catalogue} />
         <Route path="/SignIn" component={SignIn} />
         <Route path="/SignUp" component={SignUp} />
+        <Route path="/ArticleDetails/:name" component={ArticleDetails} />
+
         <Footer />
       </Router>
     </div>

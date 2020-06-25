@@ -15,6 +15,9 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Slider from '@material-ui/core/Slider';
+import { Link } from "react-router-dom";
+import Avatar from '@material-ui/core/Avatar';
+
 
 
 
@@ -55,7 +58,6 @@ function Catalogue(props) {
     const [articlesCopy, setArticlesCopy] = useState([]);
     const [filterBytitre, setFilterByTitre] = useState("");
     const [filterByAuteur, setFilterByAuteur] = useState("");
-
     const [categories, setCategories] = useState([]);
     const [value, setValue] = React.useState([20, 1000]);
 
@@ -154,6 +156,7 @@ function Catalogue(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Article Code</TableCell>
+                                    <TableCell >Photo</TableCell>
                                     <TableCell >Titre</TableCell>
                                     <TableCell >Auteur</TableCell>
                                     <TableCell >Prix Unitaire (en DH)</TableCell>
@@ -166,8 +169,12 @@ function Catalogue(props) {
                                 {articlesCopy?.filter(row => (row.titre.toLowerCase().search(filterBytitre) !== -1) && (row.auteur.toLowerCase().search(filterByAuteur) !== -1)).map(row => (
                                     <TableRow key={row.codeArticle}>
                                         <TableCell component="th" scope="row">
-                                            {row.codeArticle}
+                                            <Link
+                                                to={`/ArticleDetails/${row.codeArticle}`}
+                                            >  {row.codeArticle}</Link>
+
                                         </TableCell>
+                                        <TableCell >      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /></TableCell>
                                         <TableCell >{row.titre}</TableCell>
                                         <TableCell >{row.auteur}</TableCell>
                                         <TableCell >{row.prix}</TableCell>
