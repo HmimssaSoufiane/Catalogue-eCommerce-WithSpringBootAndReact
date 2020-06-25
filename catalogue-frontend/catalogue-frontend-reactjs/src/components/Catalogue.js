@@ -88,85 +88,82 @@ function Catalogue(props) {
 
 
     return (
-        <div >
-            <main>
-                <div>
-                    <FormControl className={classes.margin}>
+        <main style={{ minHeight: "100%" }}>
+            <div>
+                <FormControl className={classes.margin}>
 
 
-                        <TextField id="filled-basic" onChange={e => {
-                            setFilterByName(e.target.value);
-                        }} label="Search by destination" variant="filled" />
+                    <TextField id="filled-basic" onChange={e => {
+                        setFilterByName(e.target.value);
+                    }} label="Search by destination" variant="filled" />
 
-                    </FormControl>
-                    <FormControl className={classes.margin}>
-                        <InputLabel style={{ padding: "5px" }} htmlFor="outlined-age-native-simple">Categorie</InputLabel>
+                </FormControl>
+                <FormControl className={classes.margin}>
+                    <InputLabel style={{ padding: "5px" }} htmlFor="outlined-age-native-simple">Categorie</InputLabel>
 
-                        <Select
-                            variant="filled"
-                            native
-                            value={categoriesSelected.current}
-                            onChange={handleChange}
-                            inputProps={{
-                                name: 'age',
-                                id: 'filled-age-native-simple',
-                            }}
-                        >
+                    <Select
+                        variant="filled"
+                        native
+                        value={categoriesSelected.current}
+                        onChange={handleChange}
+                        inputProps={{
+                            name: 'age',
+                            id: 'filled-age-native-simple',
+                        }}
+                    >
 
-                            <option aria-label="None" value={-1} >ALL</option>
-                            {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
-                            ))}
+                        <option aria-label="None" value={-1} >ALL</option>
+                        {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
+                        ))}
 
-                        </Select>
-                    </FormControl>
-                </div>
-                <div className={classes.heroContent}>
-                    <Container maxWidth="lg"  >
-                        <TableContainer component={Paper} >
-                            <Table className={classes.table} aria-label="simple table">
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Article Code</TableCell>
-                                        <TableCell >Designation</TableCell>
-                                        <TableCell >Prix Unitaire</TableCell>
-                                        <TableCell >Quantité disponible</TableCell>
-                                        <TableCell >Categorie</TableCell>
-                                        <TableCell >Ajouter au Panier</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {articlesCopy?.filter(row => row.designation.toLowerCase().search(filterByName) !== -1).map(row => (
-                                        <TableRow key={row.codeArticle}>
-                                            <TableCell component="th" scope="row">
-                                                {row.codeArticle}
-                                            </TableCell>
-                                            <TableCell >{row.designation}</TableCell>
-                                            <TableCell >{row.prix}</TableCell>
-                                            <TableCell >{row.stock}</TableCell>
-                                            <TableCell>{row.categorie?.cat}</TableCell>
-                                            <TableCell >
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    className={classes.button}
-                                                    startIcon={<ShoppingCartIcon />}
-                                                >
-                                                    Ajouter au panier
+                    </Select>
+                </FormControl>
+            </div>
+            <div className={classes.heroContent}>
+                <Container maxWidth="lg"  >
+                    <TableContainer component={Paper} >
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Article Code</TableCell>
+                                    <TableCell >Designation</TableCell>
+                                    <TableCell >Prix Unitaire</TableCell>
+                                    <TableCell >Quantité disponible</TableCell>
+                                    <TableCell >Categorie</TableCell>
+                                    <TableCell >Ajouter au Panier</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {articlesCopy?.filter(row => row.designation.toLowerCase().search(filterByName) !== -1).map(row => (
+                                    <TableRow key={row.codeArticle}>
+                                        <TableCell component="th" scope="row">
+                                            {row.codeArticle}
+                                        </TableCell>
+                                        <TableCell >{row.designation}</TableCell>
+                                        <TableCell >{row.prix}</TableCell>
+                                        <TableCell >{row.stock}</TableCell>
+                                        <TableCell>{row.categorie?.cat}</TableCell>
+                                        <TableCell >
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                className={classes.button}
+                                                startIcon={<ShoppingCartIcon />}
+                                            >
+                                                Ajouter au panier
                                                     </Button>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Container>
-                </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Container>
+            </div>
 
 
-            </main>
+        </main>
 
-            {/* End footer */}
-        </div>
     );
 
 }

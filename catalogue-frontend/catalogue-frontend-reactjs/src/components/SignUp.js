@@ -76,7 +76,7 @@ export default function SignUp() {
     }
 
     return (
-        <Container component="main" style={{ height: "100vh" }} maxWidth="xs">
+        <Container component="main" style={{ height: "100%" }} maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
