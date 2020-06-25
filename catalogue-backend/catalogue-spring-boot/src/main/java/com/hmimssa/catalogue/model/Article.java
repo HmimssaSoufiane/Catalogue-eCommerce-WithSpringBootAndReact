@@ -21,7 +21,8 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codeArticle;
-	private String designation;
+	private String titre;
+	private String auteur;
 	private float prix;
 	private int stock;
 	@ManyToOne
@@ -37,16 +38,20 @@ public class Article {
 	public Article() {
 		super();
 	}
+	
 
-	public Article(int codeArticle, String designation, float prix, int stock, Categorie categorie, byte[] photo) {
+	public Article(int codeArticle, String titre, String auteur, float prix, int stock, Categorie categorie,
+			byte[] photo) {
 		super();
 		this.codeArticle = codeArticle;
-		this.designation = designation;
+		this.titre = titre;
+		this.auteur = auteur;
 		this.prix = prix;
 		this.stock = stock;
 		this.categorie = categorie;
 		this.photo = photo;
 	}
+
 
 	public int getCodeArticle() {
 		return codeArticle;
@@ -56,12 +61,30 @@ public class Article {
 		this.codeArticle = codeArticle;
 	}
 
-	public String getDesignation() {
-		return designation;
+
+
+	public String getTitre() {
+		return titre;
 	}
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getAuteur() {
+		return auteur;
+	}
+
+	public void setAuteur(String auteur) {
+		this.auteur = auteur;
+	}
+
+	public Set<LigneCommande> getDetailsCommandes() {
+		return detailsCommandes;
+	}
+
+	public void setDetailsCommandes(Set<LigneCommande> detailsCommandes) {
+		this.detailsCommandes = detailsCommandes;
 	}
 
 	public float getPrix() {

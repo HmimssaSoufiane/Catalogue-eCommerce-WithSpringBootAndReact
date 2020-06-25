@@ -14,6 +14,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Slider from '@material-ui/core/Slider';
+
 
 
 const styles = theme => ({
@@ -42,14 +44,24 @@ const styles = theme => ({
 
 
 
+function valuetext(value) {
+    return `${value}DH`;
+}
 
 function Catalogue(props) {
     const { classes } = props;
     const categoriesSelected = useRef(-1);
     const [articles, setArticles] = useState([]);
     const [articlesCopy, setArticlesCopy] = useState([]);
-    const [filterByName, setFilterByName] = useState("");
+    const [filterBytitre, setFilterByTitre] = useState("");
+    const [filterByAuteur, setFilterByAuteur] = useState("");
+
     const [categories, setCategories] = useState([]);
+    const [value, setValue] = React.useState([20, 1000]);
+
+    const handleChangeSlider = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const handleChange = (event) => {
         categoriesSelected.current = parseInt(event.target.value);
@@ -91,11 +103,14 @@ function Catalogue(props) {
         <main style={{ minHeight: "100%" }}>
             <div>
                 <FormControl className={classes.margin}>
-
-
                     <TextField id="filled-basic" onChange={e => {
-                        setFilterByName(e.target.value);
-                    }} label="Search by destination" variant="filled" />
+                        setFilterByTitre(e.target.value);
+                    }} label="Search by titre" variant="filled" />
+                </FormControl>
+                <FormControl className={classes.margin}>
+                    <TextField id="filled-basic" onChange={e => {
+                        setFilterByAuteur(e.target.value);
+                    }} label="Search by auteur" variant="filled" />
 
                 </FormControl>
                 <FormControl className={classes.margin}>
@@ -107,17 +122,30 @@ function Catalogue(props) {
                         value={categoriesSelected.current}
                         onChange={handleChange}
                         inputProps={{
-                            name: 'age',
+                            name: 'Categorie',
                             id: 'filled-age-native-simple',
                         }}
                     >
-
                         <option aria-label="None" value={-1} >ALL</option>
                         {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
                         ))}
 
                     </Select>
                 </FormControl>
+                <FormControl className={classes.margin} style={{ width: "300px" }}>
+                    <InputLabel style={{ padding: "5px" }} >Prix</InputLabel>
+
+                    <Slider
+                        value={value}
+                        onChange={handleChangeSlider}
+                        aria-labelledby="range-slider"
+                        valueLabelDisplay="on"
+                        max={1500}
+                        getAriaValueText={valuetext}
+
+                    />
+                </FormControl>
+
             </div>
             <div className={classes.heroContent}>
                 <Container maxWidth="lg"  >
@@ -126,20 +154,22 @@ function Catalogue(props) {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Article Code</TableCell>
-                                    <TableCell >Designation</TableCell>
-                                    <TableCell >Prix Unitaire</TableCell>
+                                    <TableCell >Titre</TableCell>
+                                    <TableCell >Auteur</TableCell>
+                                    <TableCell >Prix Unitaire (en DH)</TableCell>
                                     <TableCell >Quantité disponible</TableCell>
                                     <TableCell >Categorie</TableCell>
                                     <TableCell >Ajouter au Panier</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {articlesCopy?.filter(row => row.designation.toLowerCase().search(filterByName) !== -1).map(row => (
+                                {articlesCopy?.filter(row => (row.titre.toLowerCase().search(filterBytitre) !== -1) && (row.auteur.toLowerCase().search(filterByAuteur) !== -1)).map(row => (
                                     <TableRow key={row.codeArticle}>
                                         <TableCell component="th" scope="row">
                                             {row.codeArticle}
                                         </TableCell>
-                                        <TableCell >{row.designation}</TableCell>
+                                        <TableCell >{row.titre}</TableCell>
+                                        <TableCell >{row.auteur}</TableCell>
                                         <TableCell >{row.prix}</TableCell>
                                         <TableCell >{row.stock}</TableCell>
                                         <TableCell>{row.categorie?.cat}</TableCell>
