@@ -17,7 +17,7 @@ import org.hibernate.annotations.CascadeType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Article {
+public class Article implements Comparable<Article> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int codeArticle;
@@ -119,4 +119,13 @@ public class Article {
 	public void setPhoto(byte[] photo) {
 		this.photo = photo;
 	}
+
+
+	@Override
+	public int compareTo(Article o) {
+		if (this.getCodeArticle() != o.getCodeArticle())
+			return 1;
+		return 0;
+	}
+
 }
