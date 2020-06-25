@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,6 +33,47 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
     const classes = useStyles();
+    const [client, setClient] = useState({});
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
+    const [email, setEmail] = useState("");
+    const [motPasse, setmotPasse] = useState("");
+    const [compteType, setCompteType] = useState('');
+
+
+
+    const handleChange = (event) => {
+        setCompteType(event.target.value);
+    };
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+
+        //var raw = JSON.stringify({ "email": email, "password": password });
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        setClient({
+            "nom": nom,
+            "prenom": prenom,
+            "email": email,
+            "motPasse": motPasse
+        })
+        var raw = JSON.stringify(client);
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/API/Client/signUp", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+    }
 
     return (
         <Container component="main" style={{ height: "100vh" }} maxWidth="xs">
@@ -54,6 +95,9 @@ export default function SignUp() {
                                 id="firstName"
                                 label="Prenom"
                                 autoFocus
+                                onChange={e => {
+                                    setPrenom(e.target.value);
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -62,6 +106,9 @@ export default function SignUp() {
                                 label="Nom"
                                 name="lastName"
                                 autoComplete="lname"
+                                onChange={e => {
+                                    setNom(e.target.value);
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -70,6 +117,9 @@ export default function SignUp() {
                                 label="Email"
                                 name="email"
                                 autoComplete="email"
+                                onChange={e => {
+                                    setEmail(e.target.value);
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -79,6 +129,9 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={e => {
+                                    setmotPasse(e.target.value);
+                                }}
                             />
                         </Grid>
 
