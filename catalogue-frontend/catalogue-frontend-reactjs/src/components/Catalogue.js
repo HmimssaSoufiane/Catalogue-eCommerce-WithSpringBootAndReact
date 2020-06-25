@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -49,9 +48,7 @@ function Catalogue(props) {
     const categoriesSelected = useRef(-1);
     const [articles, setArticles] = useState([]);
     const [articlesCopy, setArticlesCopy] = useState([]);
-    const [filterByName, setFilterByName] = useState();
-
-
+    const [filterByName, setFilterByName] = useState("");
     const [categories, setCategories] = useState([]);
 
     const handleChange = (event) => {
@@ -92,7 +89,6 @@ function Catalogue(props) {
 
     return (
         <div >
-            <CssBaseline />
             <main>
                 <div>
                     <FormControl className={classes.margin}>
