@@ -4,6 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Avatar from '@material-ui/core/Avatar';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Table from '@material-ui/core/Table';
+
+
 
 
 
@@ -70,7 +76,30 @@ export default function Album() {
                             </Toolbar>
                         </AppBar>
                         <div className={classes.contentWrapper}>
-                            {article.titre}
+                            <Table className={classes.table} aria-label="simple table">
+
+                                <TableRow key={article.codeArticle}>
+                                    <TableCell style={{ fontWeight: "bold" }} >{"Photo"}</TableCell>
+                                    <TableCell ><Avatar alt={article.titre} src="/static/images/avatar/1.jpg" /></TableCell>
+                                </TableRow>
+                                <TableRow key={article.codeArticle}>
+                                    <TableCell style={{ fontWeight: "bold" }}>{"Titre"}</TableCell>
+                                    <TableCell >{article.titre}</TableCell>
+                                </TableRow>
+                                <TableRow key={article.codeArticle}>
+                                    <TableCell style={{ fontWeight: "bold" }} >{"Auteur"}</TableCell>
+                                    <TableCell >{article.auteur}</TableCell>
+                                </TableRow>
+                                <TableRow key={article.codeArticle}>
+                                    <TableCell style={{ fontWeight: "bold" }} >{"Prix"}</TableCell>
+                                    <TableCell >{article.prix}</TableCell>
+                                </TableRow>
+                                <TableRow key={article.codeArticle}>
+                                    <TableCell style={{ fontWeight: "bold" }} >{"Categorie"}</TableCell>
+                                    <TableCell >{article.categorie?.cat}</TableCell>
+                                </TableRow>
+                            </Table>
+
                         </div>
                     </Paper>
                 </div>

@@ -172,7 +172,6 @@ function Catalogue(props) {
                                             <Link
                                                 to={`/ArticleDetails/${row.codeArticle}`}
                                             >  {row.codeArticle}</Link>
-
                                         </TableCell>
                                         <TableCell ><Avatar alt={row.titre} src="/static/images/avatar/1.jpg" /></TableCell>
                                         <TableCell >{row.titre}</TableCell>
