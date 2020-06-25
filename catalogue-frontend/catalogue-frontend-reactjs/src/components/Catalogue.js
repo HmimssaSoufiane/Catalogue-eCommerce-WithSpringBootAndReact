@@ -71,6 +71,18 @@ function Catalogue(props) {
             setArticlesCopy(articles.filter(x => x.categorie.refCat === categoriesSelected.current));
 
     };
+    const handleClick = (event) => {
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/API/Article/articles", requestOptions)
+            .then(response => response.text())
+            .then(result => { setArticles(JSON.parse(result)); setArticlesCopy(JSON.parse(result)); })
+            .catch(error => console.log('error', error));
+
+    };
 
     useEffect(() => {
         var requestOptions = {
@@ -183,7 +195,9 @@ function Catalogue(props) {
                                             <Button
                                                 variant="contained"
                                                 color="secondary"
+                                                name={row.codeArticle}
                                                 className={classes.button}
+                                                onClick={handleClick}
                                                 startIcon={<ShoppingCartIcon />}
                                             >
                                                 Ajouter au panier
