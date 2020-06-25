@@ -1,9 +1,5 @@
 import React from 'react';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-
 import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,12 +10,12 @@ import Container from '@material-ui/core/Container';
 
 function Copyright() {
     return (
-        <Typography variant="body2" tyle={{ textDecoration: "none", color: "#fff" }} align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://github.com/HmimssaSoufiane">
-                By Hmimssa
-      </Link>{' '}
-            {new Date().getFullYear()}
+        <Typography variant="body2" align="center">
+            <span style={{ color: "#fff" }}>{'Copyright ©  '}</span>
+            <Link href="https://github.com/HmimssaSoufiane">
+                HMIMSSA
+            </Link>{' '}
+            <span style={{ color: "#fff" }}>   {new Date().getFullYear()}</span>
             {'.'}
         </Typography>
     );
