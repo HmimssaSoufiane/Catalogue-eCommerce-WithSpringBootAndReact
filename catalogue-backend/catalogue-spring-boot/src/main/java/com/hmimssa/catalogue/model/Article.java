@@ -1,7 +1,7 @@
 package com.hmimssa.catalogue.model;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,8 @@ public class Article {
 	
 	@OneToMany(mappedBy = "article", orphanRemoval = true)
 	@Cascade(value = { CascadeType.ALL })
-	private Set<LigneCommande> detailsCommandes = new HashSet<>();
+	@JsonIgnoreProperties("article")
+	private Set<LigneCommande> detailsCommandes = new TreeSet<>();
 
 	public Article() {
 		super();

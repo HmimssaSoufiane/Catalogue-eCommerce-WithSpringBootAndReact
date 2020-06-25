@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 //is a ligne commande non valide en mode panier
 
 @Entity
@@ -18,11 +20,13 @@ public class LigneCommande {
 	@ManyToOne
 	@JoinColumn(name = "numCommande",insertable = false, updatable = false)
 	@Cascade(value = { CascadeType.ALL })
+	@JsonIgnoreProperties("detailsCommandes")
 	private Commande commande;
 
 	@ManyToOne
 	@JoinColumn(name = "codeArticle",insertable = false, updatable = false)
 	@Cascade(value = { CascadeType.ALL })
+	@JsonIgnoreProperties("detailsCommandes")
 	private Article article;
 
 	private int qteCde;

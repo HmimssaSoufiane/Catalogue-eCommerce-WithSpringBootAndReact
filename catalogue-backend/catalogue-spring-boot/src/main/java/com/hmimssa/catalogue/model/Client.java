@@ -1,6 +1,6 @@
 package com.hmimssa.catalogue.model;
 
-import java.util.SortedSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import javax.persistence.Entity;
@@ -13,10 +13,12 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.SortNatural;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 
 @Entity
-public class Client {
+public class Client implements Comparable<Client>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -32,7 +34,8 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural
-	private SortedSet<Commande> commandes = new TreeSet<>();
+	@JsonIgnoreProperties("client")
+	private Set<Commande> commandes = new TreeSet<>();
 
 	public Client() {
 		super();
@@ -66,6 +69,14 @@ public class Client {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
 	}
 
 	public String getNom() {
@@ -123,5 +134,13 @@ public class Client {
 	public void setMotPasse(String motPasse) {
 		this.motPasse = motPasse;
 	}
+
+	@Override
+	public int compareTo(Client o) {
+		if (this.getId() != o.getId())
+			return 1;
+		return 0;
+	}
+
 
 }
