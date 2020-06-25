@@ -36,7 +36,7 @@ export default function Footer() {
     const classes = useStyles();
 
     return (
-        <div style={{ background: "#0c1217" }}>
+        <div style={{ background: "#0c1217", padding: "10px" }}>
             <Container component="main" maxWidth="sm">
                 <div className={classes.paper}>
 

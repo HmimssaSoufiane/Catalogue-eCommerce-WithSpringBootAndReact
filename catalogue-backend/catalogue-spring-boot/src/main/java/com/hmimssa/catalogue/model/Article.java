@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Article {
 	@Id
@@ -24,6 +26,7 @@ public class Article {
 	private int stock;
 	@ManyToOne
 	@JoinColumn(name="categorie")
+	@JsonIgnoreProperties("articles")
 	private Categorie categorie;
 	private byte[] photo;
 	

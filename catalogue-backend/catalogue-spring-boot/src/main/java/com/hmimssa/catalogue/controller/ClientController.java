@@ -33,7 +33,7 @@ public class ClientController {
 
 	// SignIn
 	@PostMapping("/signIn")
-	public @ResponseBody Client findClientByEmail(@RequestBody Client client) {
+	public  Client findClientByEmail(@RequestBody Client client) {
 		if (client.getMotPasse() != null && client.getEmail() != null) {
 			Client _client = daoClient.findByEmail(client.getEmail());
 			if (_client.getMotPasse().equals(client.getMotPasse()))
@@ -45,14 +45,14 @@ public class ClientController {
 
 	// SignUp
 	@PostMapping(path = "/signUp")
-	public @ResponseBody String addNewUser(@RequestBody Client client) {
+	public  String addNewUser(@RequestBody Client client) {
 
 		if (client != null) {
 			daoClient.save(client);
 			return "Saved";
 		}
 
-		return "Errur";
+		return null;
 	}
 
 }
