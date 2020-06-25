@@ -174,7 +174,7 @@ function Catalogue(props) {
                                             >  {row.codeArticle}</Link>
 
                                         </TableCell>
-                                        <TableCell >      <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /></TableCell>
+                                        <TableCell ><Avatar alt={row.titre} src="/static/images/avatar/1.jpg" /></TableCell>
                                         <TableCell >{row.titre}</TableCell>
                                         <TableCell >{row.auteur}</TableCell>
                                         <TableCell >{row.prix}</TableCell>
