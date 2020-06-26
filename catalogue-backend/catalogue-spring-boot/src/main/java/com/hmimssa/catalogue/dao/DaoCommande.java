@@ -1,21 +1,10 @@
 package com.hmimssa.catalogue.dao;
 
+import org.springframework.data.repository.CrudRepository;
+
+import com.hmimssa.catalogue.model.Commande;
+
+public interface DaoCommande extends CrudRepository<Commande, Integer> {
 
 
-
-public interface DaoCommande {
-
-	//public List<Commande> getCommandes();
-
-	//public Commande getCommande(int numCommande);
-
-	//public List<Commande> getCommandesOfClient(Client client);
-
-	//public Commande getCommandeOfClientWithPanierStatus(Client client);
-
-	//public boolean addCommande(Commande commande);
-
-	//public boolean updateCommande(Commande commande);
-
-	//public boolean deleteCommande(int numCommande);
 }

@@ -29,12 +29,13 @@ public class Article implements Comparable<Article> {
 	@JoinColumn(name="categorie")
 	@JsonIgnoreProperties("articles")
 	private Categorie categorie;
+	
 	private byte[] photo;
 	
 	@OneToMany(mappedBy = "article", orphanRemoval = true)
 	@Cascade(value = { CascadeType.ALL })
 	@JsonIgnoreProperties("article")
-	private Set<LigneCommande> detailsCommandes = new TreeSet<>();
+	private Set<LigneCommande> lignesCommande = new TreeSet<>();
 
 	public Article() {
 		super();
@@ -80,13 +81,15 @@ public class Article implements Comparable<Article> {
 		this.auteur = auteur;
 	}
 
-	public Set<LigneCommande> getDetailsCommandes() {
-		return detailsCommandes;
+	public Set<LigneCommande> getLignesCommande() {
+		return lignesCommande;
 	}
 
-	public void setDetailsCommandes(Set<LigneCommande> detailsCommandes) {
-		this.detailsCommandes = detailsCommandes;
+
+	public void setLignesCommande(Set<LigneCommande> lignesCommande) {
+		this.lignesCommande = lignesCommande;
 	}
+
 
 	public float getPrix() {
 		return prix;
@@ -128,4 +131,6 @@ public class Article implements Comparable<Article> {
 		return 0;
 	}
 
+
+	
 }

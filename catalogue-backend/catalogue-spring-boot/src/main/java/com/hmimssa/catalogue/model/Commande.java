@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
@@ -36,13 +35,19 @@ public class Commande implements Comparable<Commande>{
 	@OneToMany(mappedBy = "commande")
 	@Cascade(value = { CascadeType.ALL })
 	@SortNatural
-	@MapKey(name = "article")
 	@JsonIgnoreProperties("commande")
-	private Set< LigneCommande> detailsCommandes = new TreeSet<>();
+	private Set<LigneCommande> lignesCommande = new TreeSet<>();
 
 	public Commande() {
 		super();
 	}
+	public Commande( Client client, Date dateCommande, String etat) {
+
+		this.client = client;
+		this.dateCommande = dateCommande;
+		this.etat = etat;
+	}
+
 
 	public Commande(int numCommande, Client client, Date dateCommande, String etat) {
 		super();
@@ -52,14 +57,14 @@ public class Commande implements Comparable<Commande>{
 		this.etat = etat;
 	}
 
-	public Set<LigneCommande> getDetailsCommandes() {
-		return detailsCommandes;
+	public Set<LigneCommande> getLignesCommande() {
+		return lignesCommande;
 	}
-
-	public void setDetailsCommandes(Set<LigneCommande> detailsCommandes) {
-		this.detailsCommandes = detailsCommandes;
+	
+	public void setLignesCommande(Set<LigneCommande> lignesCommande) {
+		this.lignesCommande = lignesCommande;
 	}
-
+	
 	public int getNumCommande() {
 		return numCommande;
 	}
@@ -98,6 +103,7 @@ public class Commande implements Comparable<Commande>{
 			return 1;
 		return 0;
 	}
+
 
 
 

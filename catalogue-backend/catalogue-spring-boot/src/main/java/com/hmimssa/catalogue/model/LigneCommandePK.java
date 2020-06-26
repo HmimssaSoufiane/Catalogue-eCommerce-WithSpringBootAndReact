@@ -15,4 +15,26 @@ public class LigneCommandePK implements Serializable {
     @Basic(optional = false)
     @Column(name = "codeArticle")
     private int codeArticle;
+    
+    
+	public LigneCommandePK() {
+	}
+	public LigneCommandePK(int numCommande, int codeArticle) {
+		super();
+		this.numCommande = numCommande;
+		this.codeArticle = codeArticle;
+	}
+	public int getNumCommande() {
+		return numCommande;
+	}
+	public void setNumCommande(int numCommande) {
+		this.numCommande = numCommande;
+	}
+	public int getCodeArticle() {
+		return codeArticle;
+	}
+	public void setCodeArticle(int codeArticle) {
+		this.codeArticle = codeArticle;
+	}
+    
 }

@@ -1,6 +1,7 @@
 package com.hmimssa.catalogue.model;
 
-import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Categorie {
+public class Categorie implements Comparable<Categorie> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int refCat;
@@ -19,7 +20,7 @@ public class Categorie {
 
 	@OneToMany(mappedBy = "categorie")
 	@JsonIgnoreProperties("categorie")
-	private Collection<Article> articles;
+	private Set<Article> articles=new TreeSet<>();
 
 	public Categorie() {
 		super();
@@ -34,6 +35,14 @@ public class Categorie {
 	public int getRefCat() {
 		return refCat;
 	}
+	
+	public Set<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Set<Article> articles) {
+		this.articles = articles;
+	}
 
 	public void setRefCat(int refCat) {
 		this.refCat = refCat;
@@ -46,5 +55,14 @@ public class Categorie {
 	public void setCat(String cat) {
 		this.cat = cat;
 	}
+
+	@Override
+	public int compareTo(Categorie o) {
+		if (this.getRefCat() != o.getRefCat())
+			return 1;
+		return 0;
+	}
+
+
 
 }

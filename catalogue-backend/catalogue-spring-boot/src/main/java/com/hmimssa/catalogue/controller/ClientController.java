@@ -1,7 +1,6 @@
 package com.hmimssa.catalogue.controller;
 
 import java.util.Date;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hmimssa.catalogue.dao.DaoArticle;
 import com.hmimssa.catalogue.dao.DaoClient;
+import com.hmimssa.catalogue.dao.DaoCommande;
 import com.hmimssa.catalogue.dao.DaoLigneCommande;
 import com.hmimssa.catalogue.model.Article;
 import com.hmimssa.catalogue.model.Client;
@@ -30,7 +30,7 @@ public class ClientController {
 	@Autowired
 	DaoClient daoClient;
 	@Autowired
-	DaoClient daoCommande;
+	DaoCommande daoCommande;
 	@Autowired
 	DaoArticle daoArticle;
 	@Autowired
@@ -54,21 +54,28 @@ public class ClientController {
 		if (client != null) {
 			
 			Article article = daoArticle.findById(idArticle).orElse(null);
-			Set<Commande> commandes = client.getCommandes();
 			
-			Commande commande = commandes.stream().filter(cmd -> "panier".equals(cmd.getEtat()))
+			Commande commande = client.getCommandes().stream().filter(cmd -> "panier".equals(cmd.getEtat()))
 			  .findAny()
-			  .orElse(new Commande(-1,client,new Date(),"panier"));
+			  .orElse(new Commande(client,new Date(),"panier"));
 			
 			client.getCommandes().remove(commande);
 
 			
-			LigneCommande ligneCommande=new LigneCommande(commande,article,1);
+			LigneCommande ligneCommande=new LigneCommande();
 			
-			commande.getDetailsCommandes().add(ligneCommande);
-			article.getDetailsCommandes().add(ligneCommande);
+			ligneCommande.setCommande(commande);
+			ligneCommande.setArticle(article);
+			ligneCommande.setQteCde(1);
+			
+			
+			commande.getLignesCommande().add(ligneCommande);
+			article.getLignesCommande().add(ligneCommande);
 			client.getCommandes().add(commande);
 			
+			daoLigneCommande.save(ligneCommande);
+			daoArticle.save(article);
+			daoCommande.save(commande);
 			daoClient.save(client);
 
 			return client;
