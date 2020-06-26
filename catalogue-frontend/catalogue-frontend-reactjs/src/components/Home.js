@@ -29,6 +29,17 @@ const useStyles = makeStyles(theme => ({
 export default function Home() {
     const classes = useStyles();
 
+    const mystyle = {
+        borderRadius: "10px 10px 10px 10px",
+        color: "white",
+        backgroundColor: "DodgerBlue",
+        padding: "5px",
+        fontFamily: "Arial",
+        margin: "5px",
+        maxWidth: "400px",
+        display: "inline-block"
+    };
+
     return (
         <div style={{ minHeight: "100%" }} >
             <div className="site-wrapper">
@@ -41,19 +52,19 @@ export default function Home() {
                         </div>
 
                         <div class="inner cover"  >
-                            <Row >
-                                <Col xs={6} md={4}>
-                                    <Image src={order} style={{ width: "200px" }} rounded /><br />
+                            <Row style={{ textAlign: "center", display: "block" }} >
+                                <Col xs={6} style={mystyle} md={4}>
+                                    <Image src={order} style={{ width: "200px", margin: "16px" }} rounded /><br />
                                     <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} to="/Catalogue">Consulter le catalogue</Link>
 
                                 </Col>
-                                <Col xs={6} md={4}>
-                                    <Image src={order_} style={{ width: "200px" }} rounded /> <br />
+                                <Col xs={6} style={mystyle} md={4}>
+                                    <Image src={order_} style={{ width: "200px", margin: "16px" }} rounded /> <br />
                                     <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} to="/Commandes">Suivre vos commandes </Link>
 
                                 </Col>
-                                <Col xs={6} md={4}>
-                                    <Image src={product} style={{ width: "200px" }} rounded /> <br />
+                                <Col xs={6} style={mystyle} md={4}>
+                                    <Image src={product} style={{ width: "200px", margin: "16px" }} rounded /> <br />
                                     <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} to="/Pannier">Visualiser le pannier</Link>
 
                                 </Col>
@@ -64,6 +75,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

@@ -36,17 +36,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function SignIn() {
+export default function SignIn(props) {
     const classes = useStyles();
-
     const [client, setClient] = useState({});
+
     const [email, setEmail] = useState("");
     const [motPasse, setmotPasse] = useState("");
     const [redirect, setRedirect] = useState(false);
-
     const renderRedirect = () => {
         if (redirect) {
-            return <Redirect to='/Catalogue' />
+            // return <Redirect to='/Home' />
+            props.history.push({
+                pathname: "/Home",
+                state: {
+                    key: "value"
+                }
+            });
         }
     }
     const onSubmit = (e) => {
@@ -67,9 +72,8 @@ export default function SignIn() {
         fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
             .then(result => {
-                this.setState({ client: JSON.parse(result) });
-                console.log(this.state.client);
-                if (result !== "") this.setRedirect();
+                console.log(result);
+                if (result !== "") setRedirect(true);
             })
             .catch(error => console.log('error', error));
 
@@ -108,7 +112,7 @@ export default function SignIn() {
                         />
                         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} >
                             Sign In
-                    </Button>
+                        </Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
