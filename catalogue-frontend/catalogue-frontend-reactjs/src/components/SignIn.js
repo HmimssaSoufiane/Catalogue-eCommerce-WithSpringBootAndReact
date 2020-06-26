@@ -43,13 +43,14 @@ export default function SignIn(props) {
     const [email, setEmail] = useState("");
     const [motPasse, setmotPasse] = useState("");
     const [redirect, setRedirect] = useState(false);
+
     const renderRedirect = () => {
         if (redirect) {
             // return <Redirect to='/Home' />
             props.history.push({
                 pathname: "/Home",
                 state: {
-                    key: "value"
+                    key: client
                 }
             });
         }
@@ -73,7 +74,7 @@ export default function SignIn(props) {
             .then(response => response.text())
             .then(result => {
                 console.log(result);
-                if (result !== "") setRedirect(true);
+                if (result !== "") { setClient(JSON.parse(result)); setRedirect(true); }
             })
             .catch(error => console.log('error', error));
 

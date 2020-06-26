@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import order from '../assets/order.png'; // with import
 import order_ from '../assets/order_.png'; // with import
 import product from '../assets/product.png'; // with import
@@ -24,21 +24,25 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const mystyle = {
+    borderRadius: "10px 10px 10px 10px",
+    color: "white",
+    backgroundColor: "DodgerBlue",
+    padding: "5px",
+    fontFamily: "Arial",
+    margin: "5px",
+    maxWidth: "400px",
+    display: "inline-block"
+};
 
-
-export default function Home() {
+export default function Home(props) {
     const classes = useStyles();
+    const idClient = props.location.state?.key;
+    useEffect(() => {
+        console.log(idClient);
+    }, [idClient]);
 
-    const mystyle = {
-        borderRadius: "10px 10px 10px 10px",
-        color: "white",
-        backgroundColor: "DodgerBlue",
-        padding: "5px",
-        fontFamily: "Arial",
-        margin: "5px",
-        maxWidth: "400px",
-        display: "inline-block"
-    };
+
 
     return (
         <div style={{ minHeight: "100%" }} >
@@ -51,7 +55,7 @@ export default function Home() {
                             </div>
                         </div>
 
-                        <div class="inner cover"  >
+                        <div className="inner cover"  >
                             <Row style={{ textAlign: "center", display: "block" }} >
                                 <Col xs={6} style={mystyle} md={4}>
                                     <Image src={order} style={{ width: "200px", margin: "16px" }} rounded /><br />
