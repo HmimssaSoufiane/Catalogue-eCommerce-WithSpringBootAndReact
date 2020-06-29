@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Commande implements Comparable<Commande>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int numCommande;
+	private Integer numCommande;
 	private Date dateCommande;
 	private String etat;
 	
@@ -49,7 +49,7 @@ public class Commande implements Comparable<Commande>{
 	}
 
 
-	public Commande(int numCommande, Client client, Date dateCommande, String etat) {
+	public Commande(Integer numCommande, Client client, Date dateCommande, String etat) {
 		super();
 		this.numCommande = numCommande;
 		this.client = client;
@@ -69,7 +69,7 @@ public class Commande implements Comparable<Commande>{
 		return numCommande;
 	}
 
-	public void setNumCommande(int numCommande) {
+	public void setNumCommande(Integer numCommande) {
 		this.numCommande = numCommande;
 	}
 
@@ -99,9 +99,7 @@ public class Commande implements Comparable<Commande>{
 
 	@Override
 	public int compareTo(Commande o) {
-		if (this.getNumCommande() != o.getNumCommande())
-			return 1;
-		return 0;
+		return this.numCommande.compareTo(o.getNumCommande());
 	}
 
 

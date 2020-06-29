@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class LigneCommande implements Comparable<LigneCommande> {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private int idLigneCommande;
+	private Integer idLigneCommande;
 
     //protected LigneCommandePK ligneCommandePK;
 
@@ -48,13 +48,13 @@ public class LigneCommande implements Comparable<LigneCommande> {
 		this.qteCde = qteCde;
 	}
 
-	public int getIdLigneCommande() {
+	public Integer getIdLigneCommande() {
 		return idLigneCommande;
 	}
 
 
 
-	public void setIdLigneCommande(int idLigneCommande) {
+	public void setIdLigneCommande(Integer idLigneCommande) {
 		this.idLigneCommande = idLigneCommande;
 	}
 

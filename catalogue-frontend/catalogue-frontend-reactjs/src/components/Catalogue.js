@@ -17,6 +17,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Slider from '@material-ui/core/Slider';
 import { Link } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
+import StorefrontIcon from '@material-ui/icons/Storefront';
 
 
 
@@ -116,49 +117,55 @@ function Catalogue(props) {
     return (
         <main style={{ minHeight: "100%" }}>
             <div>
-                <FormControl className={classes.margin}>
-                    <TextField id="filled-basic" onChange={e => {
-                        setFilterByTitre(e.target.value);
-                    }} label="Search by titre" variant="filled" />
-                </FormControl>
-                <FormControl className={classes.margin}>
-                    <TextField id="filled-basic" onChange={e => {
-                        setFilterByAuteur(e.target.value);
-                    }} label="Search by auteur" variant="filled" />
+                <div style={{ marginBottom: "30px" }}>
+                    <h1 ><span style={{ verticalAlign: "bottom" }}>Catalogue</span><StorefrontIcon fontSize="inherit" /></h1>
+                </div>
+                <hr />
+                <div style={{ marginTop: "40px" }}>
+                    <FormControl className={classes.margin}>
+                        <TextField id="filled-basic" onChange={e => {
+                            setFilterByTitre(e.target.value);
+                        }} label="Search by titre" variant="filled" />
+                    </FormControl>
+                    <FormControl className={classes.margin}>
+                        <TextField id="filled-basic" onChange={e => {
+                            setFilterByAuteur(e.target.value);
+                        }} label="Search by auteur" variant="filled" />
 
-                </FormControl>
-                <FormControl className={classes.margin}>
-                    <InputLabel style={{ padding: "5px" }} htmlFor="outlined-age-native-simple">Categorie</InputLabel>
+                    </FormControl>
+                    <FormControl className={classes.margin}>
+                        <InputLabel style={{ padding: "5px" }} htmlFor="outlined-age-native-simple">Categorie</InputLabel>
 
-                    <Select
-                        variant="filled"
-                        native
-                        value={categoriesSelected.current}
-                        onChange={handleChange}
-                        inputProps={{
-                            name: 'Categorie',
-                            id: 'filled-age-native-simple',
-                        }}
-                    >
-                        <option aria-label="None" value={-1} >ALL</option>
-                        {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
-                        ))}
+                        <Select
+                            variant="filled"
+                            native
+                            value={categoriesSelected.current}
+                            onChange={handleChange}
+                            inputProps={{
+                                name: 'Categorie',
+                                id: 'filled-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="None" value={-1} >ALL</option>
+                            {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
+                            ))}
 
-                    </Select>
-                </FormControl>
-                <FormControl className={classes.margin} style={{ width: "300px" }}>
-                    <InputLabel style={{ padding: "5px" }} >Prix</InputLabel>
+                        </Select>
+                    </FormControl>
+                    <FormControl className={classes.margin} style={{ width: "300px" }}>
+                        <InputLabel style={{ padding: "5px" }} >Prix</InputLabel>
 
-                    <Slider
-                        value={value}
-                        onChange={handleChangeSlider}
-                        aria-labelledby="range-slider"
-                        valueLabelDisplay="on"
-                        max={1500}
-                        getAriaValueText={valuetext}
+                        <Slider
+                            value={value}
+                            onChange={handleChangeSlider}
+                            aria-labelledby="range-slider"
+                            valueLabelDisplay="on"
+                            max={1500}
+                            getAriaValueText={valuetext}
 
-                    />
-                </FormControl>
+                        />
+                    </FormControl>
+                </div>
 
             </div>
             <div className={classes.heroContent}>

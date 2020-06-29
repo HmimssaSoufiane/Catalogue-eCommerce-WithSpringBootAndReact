@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import { Redirect } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -50,7 +49,7 @@ export default function SignIn(props) {
             props.history.push({
                 pathname: "/Home",
                 state: {
-                    key: client
+                    o: client
                 }
             });
         }
@@ -73,7 +72,6 @@ export default function SignIn(props) {
         fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result);
                 if (result !== "") { setClient(JSON.parse(result)); setRedirect(true); }
             })
             .catch(error => console.log('error', error));
