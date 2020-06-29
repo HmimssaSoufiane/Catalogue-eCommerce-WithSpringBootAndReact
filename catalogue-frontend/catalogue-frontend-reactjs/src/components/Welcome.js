@@ -111,10 +111,15 @@ export default function Welcome() {
                     <div className={classes.heroButtons}>
                         <Grid container spacing={2} justify="center">
                             <Grid item>
-                                <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} variant="contained" color="primary" to="/SignUp">Inscription</Link>
+                                <Link style={{ textDecoration: "none", color: "#fff" }}
+                                    className={classes.button}
+                                    variant="contained"
+                                    color="primary"
+                                    to="/SignUp">Inscription</Link>
                             </Grid>
                             <Grid item>
-                                <Link style={{ textDecoration: "none", color: "#fff" }} className={classes.button} to="/SignIn">Connexion</Link>
+                                <Link style={{ textDecoration: "none", color: "#fff" }}
+                                    className={classes.button} to="/SignIn">Connexion</Link>
                             </Grid>
                         </Grid>
                     </div>

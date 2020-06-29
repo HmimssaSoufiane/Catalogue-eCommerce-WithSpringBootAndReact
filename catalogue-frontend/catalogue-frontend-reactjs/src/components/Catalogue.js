@@ -19,9 +19,6 @@ import { Link } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 
-
-
-
 const styles = theme => ({
     icon: {
         marginRight: theme.spacing(2),
@@ -118,7 +115,9 @@ function Catalogue(props) {
         <main style={{ minHeight: "100%" }}>
             <div>
                 <div style={{ marginBottom: "30px" }}>
-                    <h1 ><span style={{ verticalAlign: "bottom" }}>Catalogue</span><StorefrontIcon fontSize="inherit" /></h1>
+                    <h1 ><span style={{ verticalAlign: "bottom" }}>Catalogue</span>
+                        <StorefrontIcon fontSize="inherit" />
+                    </h1>
                 </div>
                 <hr />
                 <div style={{ marginTop: "40px" }}>
@@ -134,7 +133,10 @@ function Catalogue(props) {
 
                     </FormControl>
                     <FormControl className={classes.margin}>
-                        <InputLabel style={{ padding: "5px" }} htmlFor="outlined-age-native-simple">Categorie</InputLabel>
+                        <InputLabel style={{ padding: "5px" }}
+                            htmlFor="outlined-age-native-simple">
+                            Categorie
+                        </InputLabel>
 
                         <Select
                             variant="filled"
@@ -147,7 +149,10 @@ function Catalogue(props) {
                             }}
                         >
                             <option aria-label="None" value={-1} >ALL</option>
-                            {categories?.map(row => (<option key={row.refCat} value={row.refCat}>{row.cat}</option>
+                            {categories?.map(row => (
+                                <option key={row.refCat} value={row.refCat}>
+                                    {row.cat}
+                                </option>
                             ))}
 
                         </Select>
@@ -185,33 +190,37 @@ function Catalogue(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {articlesCopy?.filter(row => (row.titre.toLowerCase().search(filterBytitre) !== -1) && (row.auteur.toLowerCase().search(filterByAuteur) !== -1)).map(row => (
-                                    <TableRow key={row.codeArticle}>
-                                        <TableCell component="th" scope="row">
-                                            <Link
-                                                to={`/ArticleDetails/${row.codeArticle}`}
-                                            >  {row.codeArticle}</Link>
-                                        </TableCell>
-                                        <TableCell ><Avatar alt={row.titre} src="/static/images/avatar/1.jpg" /></TableCell>
-                                        <TableCell >{row.titre}</TableCell>
-                                        <TableCell >{row.auteur}</TableCell>
-                                        <TableCell >{row.prix}</TableCell>
-                                        <TableCell >{row.stock}</TableCell>
-                                        <TableCell>{row.categorie?.cat}</TableCell>
-                                        <TableCell >
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                name={row.codeArticle}
-                                                className={classes.button}
-                                                onClick={handleClick}
-                                                startIcon={<ShoppingCartIcon />}
-                                            >
-                                                Ajouter au panier
+                                {articlesCopy?.filter(row => (
+                                    row.titre.toLowerCase().search(filterBytitre) !== -1) &&
+                                    (row.auteur.toLowerCase().search(filterByAuteur) !== -1)).map(row => (
+                                        <TableRow key={row.codeArticle}>
+                                            <TableCell component="th" scope="row">
+                                                <Link
+                                                    to={`/ArticleDetails/${row.codeArticle}`}
+                                                >  {row.codeArticle}</Link>
+                                            </TableCell>
+                                            <TableCell >
+                                                <Avatar alt={row.titre} src="/static/images/avatar/1.jpg" />
+                                            </TableCell>
+                                            <TableCell >{row.titre}</TableCell>
+                                            <TableCell >{row.auteur}</TableCell>
+                                            <TableCell >{row.prix}</TableCell>
+                                            <TableCell >{row.stock}</TableCell>
+                                            <TableCell>{row.categorie?.cat}</TableCell>
+                                            <TableCell >
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    name={row.codeArticle}
+                                                    className={classes.button}
+                                                    onClick={handleClick}
+                                                    startIcon={<ShoppingCartIcon />}
+                                                >
+                                                    Ajouter au panier
                                                     </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
                             </TableBody>
                         </Table>
                     </TableContainer>

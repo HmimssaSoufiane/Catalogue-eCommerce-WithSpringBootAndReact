@@ -86,7 +86,10 @@ function Pannier(props) {
     return (
         <main style={{ minHeight: "100%" }}>
             <div>
-                <h1><span style={{ verticalAlign: "bottom" }}>Pannier</span><ShoppingCartIcon fontSize="inherit" /></h1>
+                <h1>
+                    <span style={{ verticalAlign: "bottom" }}>Pannier</span>
+                    <ShoppingCartIcon fontSize="inherit" />
+                </h1>
             </div>
             <div className={classes.heroContent}>
                 <Container maxWidth="lg"  >
@@ -102,7 +105,10 @@ function Pannier(props) {
                                                     to={`/ArticleDetails/${linge.article.codeArticle}`}
                                                 > Article Details : {linge.article.codeArticle}</Link>
                                             </TableCell>
-                                            <TableCell ><Avatar alt={linge.article.titre} src="/static/images/avatar/1.jpg" /></TableCell>
+                                            <TableCell >
+                                                <Avatar alt={linge.article.titre}
+                                                    src="/static/images/avatar/1.jpg" />
+                                            </TableCell>
                                             <TableCell >{linge.article.titre}</TableCell>
                                             <TableCell >{linge.article.prix}</TableCell>
                                             <TableCell >{linge.qteCde}</TableCell>
