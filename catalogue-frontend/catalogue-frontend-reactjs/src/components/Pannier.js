@@ -15,11 +15,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import TableFooter from '@material-ui/core/TableFooter';
 
-
-
-
-
-
 const styles = theme => ({
     icon: {
         marginRight: theme.spacing(2),
@@ -69,8 +64,13 @@ function subtotal(items) {
 function Pannier(props) {
     const { classes } = props;
     const oClient = props.location.oClient;
+    // const [client, setClient] = useState({});
+    const [commande, setCommandes] = useState([]);
+    const [lignesCommande, setLignesCommande] = useState(oClient?.commandes[0]?.lignesCommande);
 
-    const invoiceSubtotal = subtotal(oClient?.commandes[0]?.lignesCommande);
+
+
+    const invoiceSubtotal = subtotal(lignesCommande);
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
@@ -79,7 +79,7 @@ function Pannier(props) {
 
     };
     useEffect(() => {
-        console.log(oClient);
+        //  setClient();
     }, [oClient]);
 
 
@@ -97,8 +97,8 @@ function Pannier(props) {
                         <Table className={classes.table} aria-label="simple table">
 
                             <TableBody>
-                                {oClient?.commandes?.map(row => (
-                                    row.lignesCommande.map(linge => (
+                                {
+                                    lignesCommande?.map(linge => (
                                         <TableRow key={linge.lignesCommande}>
                                             <TableCell component="th" scope="row">
                                                 <Link
@@ -127,7 +127,7 @@ function Pannier(props) {
                                         </TableRow>
                                     ))
 
-                                ))}
+                                }
                             </TableBody>
                             <TableFooter  >
 
@@ -154,8 +154,8 @@ function Pannier(props) {
                                             confirmer  la commande
                                                     </Button>
                                     </TableCell>
-                                </TableRow></TableFooter>
-
+                                </TableRow>
+                            </TableFooter>
                         </Table>
                     </TableContainer>
                 </Container>
