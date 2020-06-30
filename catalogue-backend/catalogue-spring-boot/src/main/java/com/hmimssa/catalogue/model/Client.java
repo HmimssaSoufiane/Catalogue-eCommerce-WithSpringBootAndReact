@@ -1,5 +1,6 @@
 package com.hmimssa.catalogue.model;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,7 +19,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
-public class Client implements Comparable<Client>{
+public class Client implements Serializable,Comparable<Client>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

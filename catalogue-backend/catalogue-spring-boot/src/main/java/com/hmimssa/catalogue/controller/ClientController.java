@@ -98,11 +98,11 @@ public class ClientController {
 
 	// SignUp
 	@PostMapping(path = "/signUp")
-	public  String addNewUser(@RequestBody Client client) {
+	public  Client addNewUser(@RequestBody Client client) {
 
 		if (client != null) {
 			daoClient.save(client);
-			return "Saved";
+			return client;
 		}
 
 		return null;

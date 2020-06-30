@@ -31,46 +31,55 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
     const classes = useStyles();
     const [client, setClient] = useState({});
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");
     const [motPasse, setmotPasse] = useState("");
-    const [compteType, setCompteType] = useState('');
-
-
-
-    const handleChange = (event) => {
-        setCompteType(event.target.value);
-    };
+    // const [compteType, setCompteType] = useState('');
+    // const handleChange = (event) => {
+    //     setCompteType(event.target.value);
+    // };
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
         //var raw = JSON.stringify({ "email": email, "password": password });
 
+
+
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         setClient({
+            "id": 0,
             "nom": nom,
             "prenom": prenom,
             "email": email,
             "motPasse": motPasse
         })
-        var raw = JSON.stringify(client);
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            body: raw,
+            body: JSON.stringify(client),
             redirect: 'follow'
         };
 
         fetch("http://localhost:8080/API/Client/signUp", requestOptions)
             .then(response => response.text())
-            .then(result => console.log(result))
+            .then(result => {
+                if (result !== "") {
+                    // setClient(JSON.parse(result));
+                    props.history.push({
+                        pathname: "/Home",
+                        state: {
+                            o: JSON.parse(result)
+                        }
+                    });
+                }
+            })
             .catch(error => console.log('error', error));
 
     }
@@ -85,7 +94,7 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Inscription
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form onSubmit={handleSubmit} className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField autoComplete="fname" name="firstName"

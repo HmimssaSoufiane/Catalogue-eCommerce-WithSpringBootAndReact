@@ -41,19 +41,7 @@ export default function SignIn(props) {
 
     const [email, setEmail] = useState("");
     const [motPasse, setmotPasse] = useState("");
-    const [redirect, setRedirect] = useState(false);
 
-    const renderRedirect = () => {
-        if (redirect) {
-            // return <Redirect to='/Home' />
-            props.history.push({
-                pathname: "/Home",
-                state: {
-                    o: client
-                }
-            });
-        }
-    }
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -72,14 +60,21 @@ export default function SignIn(props) {
         fetch("http://localhost:8080/API/Client/signIn", requestOptions)
             .then(response => response.text())
             .then(result => {
-                if (result !== "") { setClient(JSON.parse(result)); setRedirect(true); }
+                if (result !== "") {
+                    setClient(JSON.parse(result));
+                    props.history.push({
+                        pathname: "/Home",
+                        state: {
+                            o: client
+                        }
+                    });
+                }
             })
             .catch(error => console.log('error', error));
 
     }
     return (
         <div>
-            {renderRedirect()}
             <Container style={{ height: "100vh" }} component="main" maxWidth="sm">
                 <CssBaseline />
                 <div className={classes.paper}>

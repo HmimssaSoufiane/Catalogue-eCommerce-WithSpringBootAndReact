@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import order from '../assets/order.png'; // with import
 import order_ from '../assets/order_.png'; // with import
 import product from '../assets/product.png'; // with import
@@ -39,9 +39,9 @@ const mystyle = {
 export default function Home(props) {
     const classes = useStyles();
     const client = props.location.state?.o;
-    // useEffect(() => {
-    //     console.log(client);
-    // }, [client]);
+    useEffect(() => {
+        console.log(client);
+    }, [client]);
 
 
 
