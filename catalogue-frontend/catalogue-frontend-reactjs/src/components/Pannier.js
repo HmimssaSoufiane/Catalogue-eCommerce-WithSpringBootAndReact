@@ -79,9 +79,7 @@ function Pannier(props) {
 
 
     };
-    // useEffect(() => {
-    //     //  setClient();
-    // }, [oClient]);
+
 
 
     return (
