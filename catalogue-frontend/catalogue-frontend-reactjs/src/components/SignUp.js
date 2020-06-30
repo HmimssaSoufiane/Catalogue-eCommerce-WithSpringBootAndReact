@@ -64,7 +64,6 @@ export default function SignUp(props) {
             .then(response => response.text())
             .then(result => {
                 if (result !== "") {
-                    // setClient(JSON.parse(result));
                     props.history.push({
                         pathname: "/Home",
                         state: {

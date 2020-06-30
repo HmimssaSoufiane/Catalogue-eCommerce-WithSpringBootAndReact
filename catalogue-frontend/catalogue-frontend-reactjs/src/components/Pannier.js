@@ -64,7 +64,7 @@ function subtotal(items) {
 function Pannier(props) {
     const { classes } = props;
     const oClient = props.location.oClient;
-    const [lignesCommande, setLignesCommande] = useState(oClient?.commandes?.find(row => row.etat.toLowerCase() === "panier").lignesCommande);
+    const [lignesCommande, setLignesCommande] = useState(oClient?.commandes?.find(row => row.etat.toLowerCase() === "panier")?.lignesCommande);
 
 
 
