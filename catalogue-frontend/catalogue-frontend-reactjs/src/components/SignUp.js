@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props) {
     const classes = useStyles();
-    const [client, setClient] = useState({});
     const [nom, setNom] = useState("");
     const [prenom, setPrenom] = useState("");
     const [email, setEmail] = useState("");
@@ -45,25 +44,19 @@ export default function SignUp(props) {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-
-        //var raw = JSON.stringify({ "email": email, "password": password });
-
-
-
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        setClient({
-            "id": 0,
-            "nom": nom,
-            "prenom": prenom,
-            "email": email,
-            "motPasse": motPasse
-        })
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            body: JSON.stringify(client),
+            body: JSON.stringify({
+                "id": 0,
+                "nom": nom,
+                "prenom": prenom,
+                "email": email,
+                "motPasse": motPasse
+            }),
             redirect: 'follow'
         };
 
