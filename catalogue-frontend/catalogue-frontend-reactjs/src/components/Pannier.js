@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -45,14 +45,14 @@ function ccyFormat(num) {
     return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty, unit) {
-    return qty * unit;
-}
+// function priceRow(qty, unit) {
+//     return qty * unit;
+// }
 
-function createRow(desc, qty, unit) {
-    const price = priceRow(qty, unit);
-    return { desc, qty, unit, price };
-}
+// function createRow(desc, qty, unit) {
+//     const price = priceRow(qty, unit);
+//     return { desc, qty, unit, price };
+// }
 
 function subtotal(items) {
     //return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
@@ -65,7 +65,7 @@ function Pannier(props) {
     const { classes } = props;
     const oClient = props.location.oClient;
     // const [client, setClient] = useState({});
-    const [commande, setCommandes] = useState([]);
+    //{".filter(row => (row.etat.toLowerCase() === etat))"}
     const [lignesCommande, setLignesCommande] = useState(oClient?.commandes[0]?.lignesCommande);
 
 
@@ -74,13 +74,14 @@ function Pannier(props) {
     const invoiceTaxes = TAX_RATE * invoiceSubtotal;
     const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-    const handleClick = (event) => {
+    const handleClick = (id) => {
+        setLignesCommande(lignesCommande.filter(ligne => ligne.idLigneCommande !== id));
 
 
     };
-    useEffect(() => {
-        //  setClient();
-    }, [oClient]);
+    // useEffect(() => {
+    //     //  setClient();
+    // }, [oClient]);
 
 
     return (
@@ -99,7 +100,7 @@ function Pannier(props) {
                             <TableBody>
                                 {
                                     lignesCommande?.map(linge => (
-                                        <TableRow key={linge.lignesCommande}>
+                                        <TableRow key={linge.idLigneCommande}>
                                             <TableCell component="th" scope="row">
                                                 <Link
                                                     to={`/ArticleDetails/${linge.article.codeArticle}`}
@@ -116,9 +117,9 @@ function Pannier(props) {
                                                 <Button
                                                     variant="contained"
                                                     color="secondary"
-                                                    name={linge.article.codeArticle}
+                                                    value={linge.idLigneCommande}
                                                     className={classes.button}
-                                                    onClick={handleClick}
+                                                    onClick={() => handleClick(linge.idLigneCommande)}
                                                     startIcon={<HighlightOffIcon />}
                                                 >
                                                     Supprimer
@@ -126,7 +127,6 @@ function Pannier(props) {
                                             </TableCell>
                                         </TableRow>
                                     ))
-
                                 }
                             </TableBody>
                             <TableFooter  >
@@ -148,7 +148,6 @@ function Pannier(props) {
                                             color="secondary"
 
                                             className={classes.button}
-                                            onClick={handleClick}
                                             startIcon={<DoneOutlineIcon />}
                                         >
                                             confirmer  la commande
