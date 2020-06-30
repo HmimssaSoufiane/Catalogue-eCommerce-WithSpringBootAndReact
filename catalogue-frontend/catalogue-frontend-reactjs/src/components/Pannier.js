@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -64,9 +64,7 @@ function subtotal(items) {
 function Pannier(props) {
     const { classes } = props;
     const oClient = props.location.oClient;
-    // const [client, setClient] = useState({});
-    //{".filter(row => (row.etat.toLowerCase() === etat))"}
-    const [lignesCommande, setLignesCommande] = useState(oClient?.commandes[0]?.lignesCommande);
+    const [lignesCommande, setLignesCommande] = useState(oClient?.commandes?.find(row => row.etat.toLowerCase() === "panier").lignesCommande);
 
 
 
@@ -76,9 +74,10 @@ function Pannier(props) {
 
     const handleClick = (id) => {
         setLignesCommande(lignesCommande.filter(ligne => ligne.idLigneCommande !== id));
-
-
     };
+    useEffect(() => {
+        console.log(oClient);
+    }, [oClient]);
 
 
 

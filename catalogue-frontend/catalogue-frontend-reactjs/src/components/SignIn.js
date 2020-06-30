@@ -37,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn(props) {
     const classes = useStyles();
-    const [client, setClient] = useState({});
-
     const [email, setEmail] = useState("");
     const [motPasse, setmotPasse] = useState("");
 
@@ -61,11 +59,10 @@ export default function SignIn(props) {
             .then(response => response.text())
             .then(result => {
                 if (result !== "") {
-                    setClient(JSON.parse(result));
                     props.history.push({
                         pathname: "/Home",
                         state: {
-                            o: client
+                            o: JSON.parse(result)
                         }
                     });
                 }
