@@ -21,13 +21,14 @@ export default function NavBar() {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="#features">Contact</Nav.Link>
                     <Nav.Link href="#pricing">About us</Nav.Link>
+
                 </Nav>
                 <Nav className="justify-content-end" activeKey="/home">
-                    <Nav.Item>
+                    <Nav.Item id="LogIn">
                         <Nav.Link href="/SignIn">LogIn</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href="/SignUp" eventKey="SignUp">SingUp</Nav.Link>
+                        <Nav.Link id="SingUp" href="/SignUp" eventKey="SignUp">SingUp</Nav.Link>
                     </Nav.Item>
                 </Nav>
 

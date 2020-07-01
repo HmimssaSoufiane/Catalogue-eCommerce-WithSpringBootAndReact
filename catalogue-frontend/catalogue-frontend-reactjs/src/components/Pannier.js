@@ -156,8 +156,6 @@ function Pannier(props) {
                     </TableContainer>
                 </Container>
             </div>
-
-
         </main>
 
     );
